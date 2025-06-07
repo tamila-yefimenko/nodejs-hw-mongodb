@@ -28,7 +28,7 @@ export const setupServer = () => {
 
     res
       .status(200)
-      .json({ data: contacts, message: 'Successfully found contacts!' });
+      .json({ message: 'Successfully found contacts!', data: contacts });
   });
 
   app.get('/contacts/:contactId', async (req, res, next) => {
@@ -44,8 +44,8 @@ export const setupServer = () => {
       }
 
       res.status(200).json({
-        data: contact,
         message: `Successfully found contact with id ${contactId}!`,
+        data: contact,
       });
     } catch (error) {
       res.status(500).json({ message: 'Server error', error: error.message });
