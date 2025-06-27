@@ -5,7 +5,7 @@ import {
   registerUser,
 } from '../services/auth.js';
 import { THIRTY_DAYS } from '../constants/index.js';
-import createHttpError from 'http-errors';
+// import createHttpError from 'http-errors';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -39,17 +39,28 @@ export const loginUserController = async (req, res) => {
   });
 };
 
+// export const logoutUserController = async (req, res) => {
+//   const { sessionId } = req.cookies;
+
+//   if (!sessionId) {
+//     throw createHttpError(401, 'Session not found');
+//   }
+
+//   await logoutUser(sessionId);
+
+//   res.clearCookie('sessionId');
+//   res.clearCookie('refreshToken');
+
+//   res.status(204).send();
+// };
+
 export const logoutUserController = async (req, res) => {
-  const { sessionId } = req.cookies;
+  const { refreshToken, sessionId } = req.cookies;
 
-  if (!sessionId) {
-    throw createHttpError(401, 'Session not found');
-  }
+  await logoutUser(sessionId, refreshToken);
 
-  await logoutUser(sessionId);
-
-  res.clearCookie('sessionId');
   res.clearCookie('refreshToken');
+  res.clearCookie('sessionId');
 
   res.status(204).send();
 };
