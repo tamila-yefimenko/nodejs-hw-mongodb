@@ -138,6 +138,9 @@ export const requestResetToken = async (email) => {
     link: `${getEnvVar(SMTP.APP_DOMAIN)}/reset-password?token=${resetToken}`,
   });
 
+  console.log('token', resetToken);
+  console.log('📨 Generated email HTML:\n', html);
+
   await sendEmail({
     from: getEnvVar(SMTP.SMTP_FROM),
     to: email,
@@ -169,10 +172,10 @@ export const resetPassword = async (payload) => {
 
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
-  await UsersCollection.findOneAndUpdate({
-    _id: user._id,
-    password: encryptedPassword,
-  });
+  await UsersCollection.findOneAndUpdate(
+    { _id: user._id },
+    { password: encryptedPassword },
+  );
 
   await SessionsCollection.findOneAndDelete({ userId: entries.sub });
 };
