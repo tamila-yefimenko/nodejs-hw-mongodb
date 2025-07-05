@@ -76,9 +76,8 @@ export const updateContactController = async (req, res, next) => {
     photoUrl = await saveFileToCloudinary(photo);
   }
 
-  const updatedContact = await updateContact(contactId, {
+  const updatedContact = await updateContact(contactId, req.user._id, {
     ...req.body,
-    userId: req.user._id,
     photo: photoUrl,
   });
 
