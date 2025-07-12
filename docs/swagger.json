@@ -218,6 +218,11 @@
                     "type": "string",
                     "example": "+390675647688"
                   },
+                  "email": {
+                    "type": "string",
+                    "description": "Contact's email",
+                    "example": "olena@gmail.com"
+                  },
                   "isFavourite": {
                     "description": "Shows favourite contacts",
                     "type": "boolean",
@@ -376,6 +381,11 @@
                     "type": "string",
                     "description": "Contact's phone number",
                     "example": "+380931112233"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Contact's email",
+                    "example": "olena@gmail.com"
                   },
                   "isFavourite": {
                     "type": "boolean",
