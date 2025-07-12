@@ -496,11 +496,11 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "example": "Tamila"
+                    "example": "Olena"
                   },
                   "email": {
                     "type": "string",
-                    "example": "tamila@example.com"
+                    "example": "olena@example.com"
                   },
                   "password": {
                     "type": "string",
@@ -518,6 +518,11 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -528,6 +533,7 @@
                       "example": "Successfully registered a user!"
                     },
                     "data": {
+                      "type": "object",
                       "$ref": "#/components/schemas/user"
                     }
                   }
@@ -811,12 +817,11 @@
         "required": [
           "name",
           "email",
-          "role"
+          "password"
         ],
         "properties": {
           "_id": {
             "type": "string",
-            "format": "uuid",
             "example": "65e4decdd286b30065d54af9"
           },
           "name": {
@@ -830,14 +835,10 @@
             "description": "Email address of the user",
             "example": "johndoe@example.com"
           },
-          "role": {
+          "password": {
             "type": "string",
             "description": "Role of the user",
-            "enum": [
-              "admin",
-              "user"
-            ],
-            "example": "user"
+            "example": "StrongPass123*"
           },
           "createdAt": {
             "type": "string",
