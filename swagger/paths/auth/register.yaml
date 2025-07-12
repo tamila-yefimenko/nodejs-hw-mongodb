@@ -25,5 +25,18 @@ requestBody:
 responses:
   '201':
     description: User successfully registered
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully registered a user!
+            data:
+              $ref: '../../components/schemas/user.yaml'
   '409':
     $ref: '../../components/responses/409.yaml'
