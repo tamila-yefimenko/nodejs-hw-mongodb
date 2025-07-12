@@ -15,10 +15,10 @@ requestBody:
         properties:
           name:
             type: string
-            example: Tamila
+            example: Olena
           email:
             type: string
-            example: tamila@example.com
+            example: olena@example.com
           password:
             type: string
             example: StrongPass123*
